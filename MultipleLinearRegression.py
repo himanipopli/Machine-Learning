@@ -36,3 +36,22 @@ regressor.fit(X_train,Y_train)
 
 # Predicting the test set results
 Y_pred=regressor.predict(X_test)
+
+# Building optimal model using backward elimination
+import statsmodels.formula.api as sm
+X=np.append(arr=np.ones((50,1)).astype(int),values=X,axis=1)
+X_opt=X[:,[0,1,2,3,4,5]]
+regressor_OLS=sm.OLS(endog=Y,exog=X_opt).fit()
+regressor_OLS.summary()
+X_opt=X[:,[0,1,3,4,5]]
+regressor_OLS=sm.OLS(endog=Y,exog=X_opt).fit()
+regressor_OLS.summary()
+X_opt=X[:,[0,3,4,5]]
+regressor_OLS=sm.OLS(endog=Y,exog=X_opt).fit()
+regressor_OLS.summary()
+X_opt=X[:,[0,3,5]]
+regressor_OLS=sm.OLS(endog=Y,exog=X_opt).fit()
+regressor_OLS.summary()
+X_opt=X[:,[0,3]]
+regressor_OLS=sm.OLS(endog=Y,exog=X_opt).fit()
+regressor_OLS.summary()
